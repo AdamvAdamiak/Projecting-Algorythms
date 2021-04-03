@@ -1,21 +1,20 @@
 from math import sqrt
 
 
-f_global = [2]
+f = 2
 
 
-def czp(p): # 1.1
-    f = f_global[0]
+def czp(p):  # 1.1
+    global f
     if p < f:
         return []
     if p % f == 0:
         return [f] + czp(p / f)
     f += 1
-    f_global[0] = f
     return czp(p)
 
 
-def start_end(start, end): # 1.2
+def start_end(start, end):  # 1.2
     result = []
     while start != end+1:
         result.append(start)
@@ -23,7 +22,7 @@ def start_end(start, end): # 1.2
     return result
 
 
-def sera(p): # 1.2
+def sera(p):  # 1.2
     sq = int(sqrt(p))
     current = 1
     tab = start_end(1, p)
