@@ -31,9 +31,9 @@ def signal(t):
     return 5*sin(t) + 3*sin(2*t) + 5*sin(5*t)
 
 
-def define_data():
+def define_data(n=128):
     data = []
-    for i in range(128):
+    for i in range(n):
         data.append(signal(i))
     return np.array(data)
 
