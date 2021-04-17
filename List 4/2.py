@@ -27,23 +27,37 @@ def binary_search(item_list, item):  # 2
     return result
 
 
-def sort_robots(robots):  # 1
-    print('0 - Alfanum, 1 - Type, 2 - Weight, 3 - Range, 4 - Resolution')
+def sort_robots(robots, choice):
+    return sorted(robots, key=itemgetter(choice))
 
-    print('Choose option: ', end='')
 
-    choice = int(input())
+def binary_search_robots(robots):  # 1
+    def get_data_from_user():
+        print('0 - Alfanum, 1 - Type, 2 - Weight, 3 - Range, 4 - Resolution')
 
-    sorted_robots = sorted(robots, key=itemgetter(choice))
+        print('Choose option: ', end='')
+
+        choice = int(input())
+
+        return choice
+
+    def get_parameters_data_from_user(): # 3
+        print('Search parameters(space between numbers): ', end='')
+        params = str(input())
+        params = re.split(r' ', params)
+        return params
+
+    choice = get_data_from_user()
+
+    sorted_robots = sort_robots(robots, choice)
 
     choiced_tab = []
 
     for robot in sorted_robots:
         choiced_tab.append(int(robot[choice]))
 
-    print('Search parameters(space between numbers): ', end='')
-    params = str(input())
-    params = re.split(r' ', params)
+    params = get_parameters_data_from_user()
+
     found_elems = []
 
     for param in params:
@@ -63,4 +77,4 @@ if __name__ == '__main__':
     M = int(input())
     robots = create_robots(M)
     print(robots)
-    print(sort_robots(robots))
+    print(binary_search_robots(robots))
