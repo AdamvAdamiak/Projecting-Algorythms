@@ -33,7 +33,6 @@ def dist(source, target):  # 1.3
 
 G = nx.Graph()
 nodes = []
-XY = []
 pos = {}
 
 
@@ -45,7 +44,6 @@ for i in range(10):
     G.add_node(nodes[i])
     Vx = randint(0, k)
     Vy = randint(0, k)
-    XY += [[Vx, Vy]]
     pos[nodes[i]] = [Vx, Vy]
     plotshow(.5)
 
@@ -60,6 +58,6 @@ for i in range(10):
         G.add_weighted_edges_from([(node1, node2, min)])
         plotshow(.5)
 
-print(dist(2, 1))
-plotshow(20)
+print(dist(4, 9))
+plotshow(60)
 

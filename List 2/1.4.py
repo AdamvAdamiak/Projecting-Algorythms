@@ -5,7 +5,7 @@ from random import *
 from scipy.spatial import distance
 
 
-def showgraph():
+def showgraph(G):
     pos = nx.circular_layout(G)
     nx.draw_networkx_nodes(G, pos, node_size=500)
     nx.draw_networkx_labels(G, pos)
@@ -25,26 +25,33 @@ def us1(A, B):
             A.remove(g)
             us1(A, B)
 
-    return structure
+    g = list(structure.keys())
+    u = list(structure.values())
+
+    merge_galleries(g)
+
+    merge_galleries_with_utilities(g, u)
 
 
-A = ['g1', 'g2', 'g3']
-B = ['u1', 'u2', 'u3']
+def merge_galleries(g):
+    for i in range(len(A)-1):
+        G.add_edge(g[i], g[i+1])
 
-G = nx.Graph()
-structure = us1(A, B)
-g = list(structure.keys())
-u = list(structure.values())
-for i in range(0, len(g)):
-    for j in range(0, len(g)):
-        if j == i+1 or j == i-1:
-            continue
-        G.add_edge(g[i], u[j])
 
-galleries = list(structure.keys())
-utilities = list(structure.values())
+def merge_galleries_with_utilities(g, u):
+    for g1 in range(0, len(g)):
+        for g2 in range(0, len(g)):
+            if g2 == g1+1 or g2 == g1-1:
+                continue
+            G.add_edge(g[g1], u[g2])
 
-for i in range(len(A)-1):
-    G.add_edge(galleries[i], galleries[i+1])
 
-showgraph()
+if __name__ == '__main__':
+    A = ['g1', 'g2', 'g3']
+    B = ['u1', 'u2', 'u3']
+
+    G = nx.Graph()
+
+    us1(A, B)
+
+    showgraph(G)
