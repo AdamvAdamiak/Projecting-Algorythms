@@ -38,6 +38,6 @@ def sera(p):  # 1.2
         i = tab.index(current)+1
         current = tab[i]
 
-
-print(czp(30))
-print(sera(30))
+if __name__ == '__main__':
+    print(czp(30))
+    print(sera(30))

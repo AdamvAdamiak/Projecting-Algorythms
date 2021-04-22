@@ -39,7 +39,6 @@ def miller_rabin(n, k=40):
             return False
     return True
 
-
-print(fermat(5))
-
-print(miller_rabin(1621))
+if __name__ == '__main__':
+    print(fermat(5))
+    print(miller_rabin(1621))

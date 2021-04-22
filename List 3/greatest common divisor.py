@@ -10,8 +10,8 @@ def aeuc(x, y):  # 2.1 euklides
         return x
     return aeuc(y, x % y)
 
-
-x = 122
-y = 1500
-print(aczp(x, y))
-print(aeuc(x, y))
+if __name__ == '__main__':
+    x = 122
+    y = 1500
+    print(aczp(x, y))
+    print(aeuc(x, y))
