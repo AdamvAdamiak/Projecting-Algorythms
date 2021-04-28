@@ -38,7 +38,7 @@ def linear_search2(robots):
                 choice = None
             user_choices.append(choice)
     get_data_from_user()
-
+    print(user_choices)
     for robot in robots:
         count = 0
         for i in range(5):
@@ -81,8 +81,8 @@ if __name__ == '__main__':
     robots = create_robots(M)
     print(robots)
 
-    print(linear_search1(robots))
+    # print(linear_search1(robots))
 
     print(linear_search2(robots))
 
-    print(linear_search3(robots))
+    # print(linear_search3(robots))
