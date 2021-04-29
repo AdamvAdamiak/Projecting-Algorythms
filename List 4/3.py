@@ -6,7 +6,7 @@ import pandas as pd
 from operator import itemgetter
 import re
 from matplotlib import pyplot as plt
-
+from robots0 import create_robots
 
 def convert_to_tuple(robots):
     result = []
@@ -37,9 +37,11 @@ def hash_search(robots):
 
         for i in range(3):
             print(f'Enter {choices_int[i]}: ', end='')
-            choice = int(input())
+            choice = str(input())
             if choice == '':
                 choice = None
+            else:
+                choice = int(choice)
             user_choices.append(choice)
     get_data_from_user()
 
@@ -60,10 +62,12 @@ def search_by_2_params(robots):
     user_choices = []
     for i in range(2):
         print(f'Enter {choices[i]}: ', end='')
-        choice = int(input())
+        choice = str(input())
 
         if choice == '':
             user_choices.append(None)
+        else:
+            choice = int(choice)
         user_choices.append(choice)
 
     count_check = 0
@@ -82,11 +86,9 @@ def search_by_2_params(robots):
 if __name__ == '__main__':
     print('How many robots? : ', end='')
     M = int(input())
-    robots = [['3e39ecf72af446', 'AGV', 1544, 269, 29], ['572fab49b', 'AGV', 1017, 872, 18], ['47dd0618fe9a',
-                                                                                     'AUV', 1427, 461, 18], ['139fa922aa2b4', 'AFV', 590, 933, 8], ['bc26500b409d40', 'AFV', 590, 320, 23]]
+    robots = create_robots()
     print(robots)
     robots = convert_to_tuple(robots)
-    print(robots)
     hashed_robots = hash_robots(robots)  # 2
-    print(hash_search(robots))
+    print('Robot with index ',hash_search(robots))
     print('Robot with index ', search_by_2_params(robots))

@@ -38,9 +38,9 @@ def create_help_vectors(robots):
         print(choices_names[choice])
         for i in range(len(robots)):
             result.setdefault(i, []).append(robots[i][choice])
-        print(result)
+        print('Initial Values: ',result)
         result = sorted(result, key=result.get)
-        print(result)
+        print('Help Vector: ',result)
         help_vectors.setdefault(choices_names[choice], []).append(result)
     return help_vectors
 

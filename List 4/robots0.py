@@ -76,6 +76,6 @@ if __name__ == '__main__':
     print(robots)
     save(robots)
 
-    # show_robots(robots)
-    # loaded = load('robots.csv')
-    # print(loaded)
+    show_robots(robots)
+    loaded = load('robots.csv')
+    print(loaded)

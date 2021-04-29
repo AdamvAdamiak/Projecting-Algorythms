@@ -63,7 +63,6 @@ def binary_search_robots(robots):  # 1
     for param in params:
         param = int(param)
         result = binary_search(choiced_tab, param)
-        print(choiced_tab,param)
         if result == None:
             continue
         result = sorted_robots[result]

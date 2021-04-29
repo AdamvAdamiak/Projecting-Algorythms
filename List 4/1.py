@@ -81,8 +81,8 @@ if __name__ == '__main__':
     robots = create_robots(M)
     print(robots)
 
-    # print(linear_search1(robots))
+    print(linear_search1(robots))
 
     print(linear_search2(robots))
 
-    # print(linear_search3(robots))
+    print(linear_search3(robots))
