@@ -28,7 +28,7 @@ def binary_search(item_list, item):
     return result
 
 
-def create_help_vectors(robots):
+def create_help_vectors(robots): # 1
     result = {}
     choices_names = ['Alfanum', 'Type', 'Weight', 'Range', 'Resolution']
     choices = [0, 1, 2, 3, 4]

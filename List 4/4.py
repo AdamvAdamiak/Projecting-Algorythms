@@ -125,5 +125,5 @@ if __name__ == '__main__':
     robots = [['3e39ecf72af446', 'AGV', 1544, 269, 29], ['572fab49b', 'AGV', 1017, 872, 18], ['47dd0618fe9a',
                                                                                      'AUV', 1427, 461, 18], ['139fa922aa2b4', 'AFV', 590, 933, 8], ['bc26500b409d40', 'AFV', 590, 320, 23]]
     print(robots)
-    print(binary_search_robots(robots))
-    print(binary_search_robots2(robots))
+    print(binary_search_robots(robots)) # 1
+    print(binary_search_robots2(robots)) # 2

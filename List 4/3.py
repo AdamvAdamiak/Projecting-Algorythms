@@ -89,6 +89,7 @@ if __name__ == '__main__':
     robots = create_robots()
     print(robots)
     robots = convert_to_tuple(robots)
-    hashed_robots = hash_robots(robots)  # 2
-    print('Robot with index ',hash_search(robots))
-    print('Robot with index ', search_by_2_params(robots))
+    hashed_robots = hash_robots(robots) 
+    print(hashed_robots) # 1
+    print('Robot with index ',hash_search(robots)) # 2
+    print('Robot with index ', search_by_2_params(robots)) # 3
