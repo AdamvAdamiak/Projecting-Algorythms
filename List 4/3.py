@@ -86,7 +86,7 @@ def search_by_2_params(robots):
 if __name__ == '__main__':
     print('How many robots? : ', end='')
     M = int(input())
-    robots = create_robots()
+    robots = create_robots(M)
     print(robots)
     robots = convert_to_tuple(robots)
     hashed_robots = hash_robots(robots) 
