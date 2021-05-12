@@ -8,12 +8,12 @@ def data():
     return vector
 
 
-def countingSortForRadix(inputArray, placeValue):
+def countingSort(data, pValue):
     countArray = [0] * 10
-    inputSize = len(inputArray)
+    inputSize = len(data)
 
     for i in range(inputSize):
-        placeElement = (inputArray[i] // placeValue) % 10
+        placeElement = (data[i] // pValue) % 10
         countArray[placeElement] += 1
 
     for i in range(1, 10):
@@ -22,8 +22,8 @@ def countingSortForRadix(inputArray, placeValue):
     outputArray = [0] * inputSize
     i = inputSize - 1
     while i >= 0:
-        currentEl = inputArray[i]
-        placeElement = (inputArray[i] // placeValue) % 10
+        currentEl = data[i]
+        placeElement = (data[i] // pValue) % 10
         countArray[placeElement] -= 1
         newPosition = countArray[placeElement]
         outputArray[newPosition] = currentEl
@@ -32,28 +32,28 @@ def countingSortForRadix(inputArray, placeValue):
     return outputArray
 
 
-def radixSort(inputArray):
+def radixSort(data):
 
-    maxEl = max(inputArray)
+    maxEl = max(data)
 
-    D = 1
+    i = 1
     while maxEl > 0:
         maxEl /= 10
-        D += 1
+        i += 1
 
-    placeVal = 1
+    pValue = 1
 
-    outputArray = inputArray
-    while D > 0:
-        outputArray = countingSortForRadix(outputArray, placeVal)
-        placeVal *= 10
-        D -= 1
+    outputData = data
+    while i > 0:
+        outputData = countingSort(outputData, pValue)
+        pValue *= 10
+        i -= 1
 
-    return outputArray
+    return outputData
 
 
 if __name__ == '__main__':
     input = data()
-    print(input)
+    print('before sort ', input)
     sorted = radixSort(input)
-    print(sorted)
+    print('after sort ', sorted)
