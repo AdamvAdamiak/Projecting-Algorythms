@@ -36,20 +36,6 @@ class PriorityQueue(object):
         return 'Not found'
 
 
-def create_priority_data():
-    i = 0
-    data = []
-    while i <= 30:
-        data.append([randint(0, 1000), i])
-        i += 3
-    return data
-
-
-def append_data_to_object(object, data):
-    for line in data:
-        object.insert(line[0], line[1])
-
-
 class binary_heap_quene(object):
 
     def __init__(self):
@@ -193,6 +179,19 @@ class binary_heap_quene(object):
         print('Search value: ', end='')
         print(self.search(int(input())))
 
+
+def create_priority_data():
+    i = 0
+    data = []
+    while i <= 30:
+        data.append([randint(0, 1000), i])
+        i += 3
+    return data
+
+
+def append_data_to_object(object, data):
+    for line in data:
+        object.insert(line[0], line[1])
 
 def append_data_to_heap_object(object):
     for i in range(HEAP_NUMBER):
