@@ -20,7 +20,7 @@ class PriorityQueue(object):
         try:
             max = 0
             for i in range(len(self.queue)):
-                if self.queue[i][1] > self.queue[max][1]:
+                if self.queue[i][1] < self.queue[max][1]:
                     max = i
             item = self.queue[max][0]
             del self.queue[max]
@@ -36,7 +36,7 @@ class PriorityQueue(object):
         return 'Not found'
 
 
-class binary_heap_quene(object):
+class Binary_heap_quene(object):
 
     def __init__(self):
         self.H = [0]*(HEAP_NUMBER+1)
@@ -203,13 +203,15 @@ def test_queue():
     Queue = PriorityQueue()
     data = create_priority_data()
     append_data_to_object(Queue, data)
-    print(Queue)
+    print('Data [data,priority]: ',Queue)
     print('Search value: ', end='')
     print(Queue.search(int(input())))
+    print(f'Removing item with lowest priority: {Queue.delete()}')
+    print('Data [data,priority] after removing item: ',Queue)
 
 
 def test_heap_queue():
-    heapQueue = binary_heap_quene()
+    heapQueue = Binary_heap_quene()
     append_data_to_heap_object(heapQueue)
     heapQueue.test()
 
