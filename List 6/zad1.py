@@ -22,7 +22,7 @@ class PriorityQueue(object):
             for i in range(len(self.queue)):
                 if self.queue[i][1] > self.queue[max][1]:
                     max = i
-            item = self.queue[max][0]
+            item = self.queue[max]
             del self.queue[max]
             return item
         except IndexError:
