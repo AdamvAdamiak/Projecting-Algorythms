@@ -206,7 +206,7 @@ def test_queue():
     print('Data [data,priority]: ',Queue)
     print('Search value: ', end='')
     print(Queue.search(int(input())))
-    print(f'Removing item with lowest priority: {Queue.delete()}')
+    print(f'Removing item with highest priority: {Queue.delete()}')
     print('Data [data,priority] after removing item: ',Queue)
 
 
