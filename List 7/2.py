@@ -1,8 +1,8 @@
-from main import *
-random.seed(50)
+from functions import *
+random.seed(12)
 
 
-class BSTNode:
+class BSTNode:  # 2
     def __init__(self, val=None):
         self.left = None
         self.right = None
@@ -75,72 +75,37 @@ class BSTNode:
             return False
         return self.right.exists(val)
 
-    def preorder(self, vals):
-        if self.val is not None:
-            vals.append(self.val)
-        if self.left is not None:
-            self.left.preorder(vals)
-        if self.right is not None:
-            self.right.preorder(vals)
-        return vals
 
-    def inorder(self, vals):
-        if self.left is not None:
-            self.left.inorder(vals)
-        if self.val is not None:
-            vals.append(self.val)
-        if self.right is not None:
-            self.right.inorder(vals)
-        return vals
-
-    def postorder(self, vals):
-        if self.left is not None:
-            self.left.postorder(vals)
-        if self.right is not None:
-            self.right.postorder(vals)
-        if self.val is not None:
-            vals.append(self.val)
-        return vals
-
-
-def get_params(r_list, p):
+def get_robot_data(r_list, p):
     if p == 1:
-        return get_masa(r_list)
+        return get_weight(r_list)
     elif p == 2:
-        return get_zasieg(r_list)
+        return get_range(r_list)
     elif p == 3:
-        return get_rozdzielczosc(r_list)
+        return get_resolution(r_list)
 
 
-robots = multiple_robots(10)
-show_robots(robots)
-print('\n')
-param = int(
-    input('Wybierz parametr: 1 - masa, 2 - zasięg, 3 - rozdzielczość: \n'))
-nodes = get_params(robots, param)
-print(nodes, '\n')
-bst = array_to_bst(nodes)
-bst.display()
-bst.delete(530)
-print('delete 530')
-bst.display()
+if __name__ == '__main__':
+    robots = create_robots(10)
+    show_robots(robots)
+    print()
+    print('Wybierz parametr: 1 - masa, 2 - zasięg, 3 - rozdzielczość: ', end='')
+    param = int(input())
+    nodes = get_robot_data(robots, param)
+    print('Dane: ', nodes, '\n')
+    bst = array_to_bst(nodes)  # 1
+    bst.display()
+    bst.delete(9)
+    print('== Usuwam 9 ==')
+    bst.display()
+    print('== Dodaje 37 ==')
+    bst.insert(37)
+    bst.display()
 
-bst.insert(33)
-bst.display()
+    print('\n')
 
-bst.delete(648)
-print('delete 648')
-bst.display()
-print('\n')
-print(nodes)
-
-
-print('road to gold')
-print(search(bst, 928))
-print(way)
-
-print('IN order: ', bst.depthFirstSearch_INorder())
-print()
-print('PRE order:', bst.depthFirstSearch_PREorder())
-print()
-print('POST order:', bst.depthFirstSearch_POSTorder())
+    print('Kolejność [INORDER]: ', bst.depthFirstSearch_INorder())
+    print()
+    print('Kolejność [PREORDER]:', bst.depthFirstSearch_PREorder())
+    print()
+    print('Kolejność [POSTORDER]:', bst.depthFirstSearch_POSTorder())

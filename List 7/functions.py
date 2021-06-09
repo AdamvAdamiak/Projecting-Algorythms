@@ -2,7 +2,7 @@ import string
 import random
 
 
-class binarySearchTree:
+class binarySearchTree:  # 1
     def __init__(self, val=None):
         self.val = val
         self.left = None
@@ -16,7 +16,7 @@ class binarySearchTree:
         else:
 
             if val == self.val:
-                return 'no duplicates allowed in binary search tree'
+                return 'Duplikaty są niemożliwe w drzewie binarnym'  # 4
 
             if (val < self.val):
 
@@ -37,21 +37,6 @@ class binarySearchTree:
 
     def insert_right(self, val):
         self.right = val
-
-    def breadthFirstSearch(self):
-        currentNode = self
-        bfs_list = []
-        queue = []
-        queue.insert(0, currentNode)
-        while(len(queue) > 0):
-            currentNode = queue.pop()
-            bfs_list.append(currentNode.val)
-            if(currentNode.left):
-                queue.insert(0, currentNode.left)
-            if(currentNode.right):
-                queue.insert(0, currentNode.right)
-
-        return bfs_list
 
     def depthFirstSearch_INorder(self):
         return self.traverseInOrder([])
@@ -94,17 +79,17 @@ class binarySearchTree:
             if (self.left):
                 return self.left.findNodeAndItsParent(val, self)
             else:
-                return 'Not found'
+                return 'Nie znaleziono'
         else:
             if (self.right):
                 return self.right.findNodeAndItsParent(val, self)
             else:
-                return 'Not found'
+                return 'Nie znaleziono'
 
     def delete(self, val):
 
-        if(self.findNodeAndItsParent(val) == 'Not found'):
-            return 'Node is not in tree'
+        if(self.findNodeAndItsParent(val) == 'Nie znaleziono'):
+            return 'Wierzchołek nie jest w drzewie'
 
         deleteing_node, parent_node = self.findNodeAndItsParent(val)
 
@@ -115,7 +100,7 @@ class binarySearchTree:
                 parent_node.left = None
             else:
                 parent_node.right = None
-            return 'Succesfully deleted'
+            return 'Usunięto'
 
         else:
 
@@ -128,7 +113,7 @@ class binarySearchTree:
 
                 for node in nodes_effected:
                     self.insert(node)
-                return 'Succesfully deleted'
+                return 'Usunięto'
 
             nodes_effected = parent_node.traversePreOrder([])
 
@@ -142,15 +127,14 @@ class binarySearchTree:
             for node in nodes_effected:
                 self.insert(node)
 
-        return 'Successfully deleted'
+        return 'Usunięto'
 
-    def display(self):
-        lines, *_ = self._display_aux()
+    def display(self):  # 3
+        lines, *_ = self.helper_display()
         for line in lines:
             print(line)
 
-    def _display_aux(self):
-        # --
+    def helper_display(self):
 
         if self.right is None and self.left is None:
             line = '%s' % self.val
@@ -160,7 +144,7 @@ class binarySearchTree:
             return [line], width, height, middle
 
         if self.right is None:
-            lines, n, p, x = self.left._display_aux()
+            lines, n, p, x = self.left.helper_display()
             s = '%s' % self.val
             u = len(s)
             first_line = (x + 1) * ' ' + (n - x - 1) * '_' + s
@@ -169,7 +153,7 @@ class binarySearchTree:
             return [first_line, second_line] + shifted_lines, n + u, p + 2, n + u // 2
 
         if self.left is None:
-            lines, n, p, x = self.right._display_aux()
+            lines, n, p, x = self.right.helper_display()
             s = '%s' % self.val
             u = len(s)
             first_line = s + x * '_' + (n - x) * ' '
@@ -177,8 +161,8 @@ class binarySearchTree:
             shifted_lines = [u * ' ' + line for line in lines]
             return [first_line, second_line] + shifted_lines, n + u, p + 2, u // 2
 
-        left, n, p, x = self.left._display_aux()
-        right, m, q, y = self.right._display_aux()
+        left, n, p, x = self.left.helper_display()
+        right, m, q, y = self.right.helper_display()
         s = '%s' % self.val
         u = len(s)
         first_line = (x + 1) * ' ' + (n - x - 1) * \
@@ -194,7 +178,7 @@ class binarySearchTree:
             [a + u * ' ' + b for a, b in zipped_lines]
         return lines, n + m + u, max(p, q) + 2, n + u // 2
 
-    def if_bst(self):
+    def if_bst(self):  # 2
         indicator = 1
         node_list = self.depthFirstSearch_INorder()
         for i in range(0, len(node_list)-2):
@@ -203,7 +187,7 @@ class binarySearchTree:
                 self.delete(node_list[i])
                 self.insert(node_list[i])
         if indicator == 1:
-            return 'BST_checked'
+            return 'BST sprawdzone'
         else:
             return self.if_bst()
 
@@ -219,31 +203,13 @@ def array_to_bst(array_nums):
     return node
 
 
-way = []
-
-
-def search(root, key):
-    global way
-
-    if root is None or root.val == key:
-        way.append(root)
-        return root
-
-    if root.val < key:
-        way.append(root.right)
-        return search(root.right, key)
-
-    way.append(root.left)
-    return search(root.left, key)
-
-
 class robot:
-    def __init__(self, identyfikator, typ, masa, zasieg, rozdzielczosc):
-        self.identyfikator = identyfikator
+    def __init__(self, ID, typ, weight, range, resolution):
+        self.ID = ID
         self.typ = typ
-        self.masa = masa
-        self.zasieg = zasieg
-        self.rozdzielczosc = rozdzielczosc
+        self.weight = weight
+        self.range = range
+        self.resolution = resolution
 
 
 def id_generator(size=10, chars=string.ascii_uppercase + string.digits):
@@ -258,7 +224,7 @@ def random_robot():
     return id_generator(), random.choice(typ), random.randint(50, 2000), random.randint(1, 1000), random.randint(1, 30)
 
 
-def multiple_robots(M):
+def create_robots(M):
     vector = []
     for i in range(M):
         rr = random_robot()
@@ -268,27 +234,28 @@ def multiple_robots(M):
 
 
 def show_robots(vector):
+    print('=== Roboty ===')
     for i in range(len(vector)):
-        print(vector[i].identyfikator, vector[i].typ,
-              vector[i].masa, vector[i].zasieg, vector[i].rozdzielczosc)
+        print(vector[i].ID, vector[i].typ,
+              vector[i].weight, vector[i].range, vector[i].resolution)
 
 
-def get_masa(vec):
+def get_weight(vec):
     tmp = []
     for i in range(len(vec)):
-        tmp.append(vec[i].masa)
+        tmp.append(vec[i].weight)
     return tmp
 
 
-def get_zasieg(vec):
+def get_range(vec):
     tmp = []
     for i in range(len(vec)):
-        tmp.append(vec[i].zasieg)
+        tmp.append(vec[i].range)
     return tmp
 
 
-def get_rozdzielczosc(vec):
+def get_resolution(vec):
     tmp = []
     for i in range(len(vec)):
-        tmp.append(vec[i].rozdzielczosc)
+        tmp.append(vec[i].resolution)
     return tmp

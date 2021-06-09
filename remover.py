@@ -39,5 +39,5 @@ def do_file(fname):
         last_lineno = elineno
 
 if __name__ == '__main__':
-    fname = 'lista7_zad3.py'
+    fname = '3.py'
     do_file(fname)

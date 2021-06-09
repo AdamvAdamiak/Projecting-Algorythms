@@ -5,7 +5,7 @@ V = 6
 G = [(1, 2), (2, 3), (3, 4), (4, 5), (5, 0), (0, 1)]
 
 
-def lvk(V, G, is_directed):
+def list_of_nodes_and_edges(V, G):
     print('== Lista wierzchołków i krawędzi ==')
     Vlist = []
     for v in range(V):
@@ -13,8 +13,7 @@ def lvk(V, G, is_directed):
     return Vlist, G
 
 
-def nm(V, G, is_directed):
-    print('== Macierz sąsiedztwa ==')
+def neighborhood_matrix(V, G, is_directed):
     nm = np.zeros((V, V))
     for k in G:
         nm[k[0]][k[1]] = 1
@@ -24,7 +23,7 @@ def nm(V, G, is_directed):
     return df
 
 
-def moi(V, G, is_directed):
+def incident_matrix(V, G, is_directed):
     print('== Macierz incydencji ==')
     if not is_directed:
         return "Ta metoda działa tylko dla grafów skierowanych"
@@ -38,7 +37,7 @@ def moi(V, G, is_directed):
 
 
 def shortestpath(V, G, is_directed, start, end):
-    matrix = nm(V, G, is_directed)
+    matrix = neighborhood_matrix(V, G, is_directed)
     for i in range(1, V):
         m = np.linalg.matrix_power(matrix, i)
         if m[start][end] != 0:
@@ -46,8 +45,8 @@ def shortestpath(V, G, is_directed, start, end):
     return "Droga nie istnieje"
 
 
-def connectivity(V, G):
-    matrix = nm(V, G, False)
+def is_connected(V, G):
+    matrix = neighborhood_matrix(V, G, False)
     c = [0] * V
     for v1 in range(V):
         for v2 in range(V):
@@ -61,11 +60,11 @@ def connectivity(V, G):
 
 def print_methods(V, G, is_directed, method):
     if method == 1:
-        return lvk(V, G, is_directed)
+        return list_of_nodes_and_edges(V, G)
     elif method == 2:
-        return nm(V, G, is_directed)
+        return neighborhood_matrix(V, G, is_directed)
     elif method == 3:
-        return moi(V, G, is_directed)
+        return incident_matrix(V, G, is_directed)
     else:
         exit()
 
@@ -81,6 +80,8 @@ if __name__ == '__main__':
         exit()
 
     for method in range(1, 4):
+        if method == 2:
+            print('== Macierz sąsiedztwa ==')
         print(print_methods(V, G, is_directed, method))
-    print(shortestpath(V, G, is_directed, 2, 1))
-    print(connectivity(V, G))
+    print('Najkrótsza droga od 2 do 1 wynosi tyle kroków: ',shortestpath(V, G, is_directed, 2, 1))
+    print(is_connected(V, G))
