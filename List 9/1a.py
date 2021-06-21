@@ -55,4 +55,5 @@ def kruskals(graph: list):
     plot_graph(MST)
 
 
-kruskals(graph)
+if __name__ == '__main__':
+    kruskals(graph)

@@ -1,6 +1,8 @@
 import networkx as nx
 import matplotlib.pyplot as plt
 
+a, b, c, d, e, f = 0, 1, 2, 3, 4, 5
+graph = [[a, b, 2] ,[a, c, 3],[b, d, 3],[b, c, 5],  [b, e, 4]    , [c, e, 4],    [d, e, 2],    [d, f, 3],   [e, f, 5]]
 
 def graph_from_edges(edges):
     G = nx.Graph()
@@ -58,7 +60,5 @@ def prims(V, G):
         minEdge = [None, None, float('inf')]
     return MST
 
-
-a, b, c, d, e, f = 0, 1, 2, 3, 4, 5
-graph = [[a, b, 2] ,[a, c, 3],[b, d, 3],[b, c, 5],  [b, e, 4]    , [c, e, 4],    [d, e, 2],    [d, f, 3],   [e, f, 5]]
-prims(6, graph)
+if __name__ == '__main__':
+    prims(6, graph)

@@ -1,7 +1,9 @@
 import itertools
-import time
-import numpy as np
-items = [(2, 40), (2, 160), (3, 70), (15, 300), (1, 70), (4, 25), (5, 25), (6, 180), (3, 80), (4, 180), (5, 120), (1, 50), (3, 70)]# items = [(2,10) , (1,8) , (1,5)]
+items = [(2, 40), (2, 160), (3, 70), 
+(15, 300), (1, 70), (4, 25),
+         (5, 25), (6, 180),
+          (3, 80), (4, 180), 
+          (5, 120), (1, 50), (3, 70)]
 
 
 
@@ -22,18 +24,12 @@ def knapsackr(items, weight):
             accept_sol_vec.append(vector)
             accept_sol_value.append(sum_p)
 
-    #find optimal solution
     max_p = 0
-    max_vec = []
     for i in range(len(accept_sol_value)):
         if accept_sol_value[i] > max_p:
             max_p = accept_sol_value[i]
-            max_vec = accept_sol_vec[i]
 
-    return max_p, max_vec
+    return max_p
 
-
-print(knapsackr(items, 13))
-
-
-
+if __name__ == '__main__':
+    print('Wartość przedmiotów metodą zachłanną: ', knapsackr(items, 700))

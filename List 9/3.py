@@ -29,18 +29,18 @@ def floyd_warshall(graf, a, b):
         for i in range(len(graf)):
             for j in range(len(graf)):
                 graf[i][j] = min(graf[i][j], graf[i][x]+graf[j][x])
-    print(graf[a][b])
+    print(np.array(graf))
 
 
 
-
-G = nx.from_numpy_array(np.array(M_copy))
-pos = nx.spring_layout(G)
-nx.draw_networkx_nodes(G, pos, node_size=500)
-nx.draw_networkx_labels(G, pos)
-nx.draw_networkx_edges(G, pos)
-floyd_warshall(M, 2, 7)
-plt.show()
+if __name__ == '__main__':
+    G = nx.from_numpy_array(np.array(M_copy))
+    pos = nx.spring_layout(G)
+    nx.draw_networkx_nodes(G, pos, node_size=500, node_color='gray')
+    nx.draw_networkx_labels(G, pos)
+    nx.draw_networkx_edges(G, pos, edge_color='green')
+    floyd_warshall(M, 2, 7)
+    plt.show()
 
 
 

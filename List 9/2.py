@@ -18,12 +18,11 @@ def dijkstra(graph, start, goal):
     shortest_distance = {}
     visited = {}
     unvisited = graph
-    infinity = 9999999
+    infinity = float('inf')
     path = []
     for node in unvisited:
         shortest_distance[node] = infinity
     shortest_distance[start] = 0
-    # wykonujemy dopoki nie zostaną sprawdzone wszystkie wierzcholki
     while unvisited:
         minNode = None
         for node in unvisited:
@@ -52,21 +51,23 @@ def dijkstra(graph, start, goal):
         print('Shortest distance is ' + str(shortest_distance[goal]))
         print('And the path is ' + str(path))
 
+if __name__ == '__main__':
 
-dijkstra(graph, 2, 0)
-
-
-edges = [(1, 2, 1), (2, 5, 2), (3, 5, 3),
-         (5, 1, 1), (4, 1, 5), (4, 6, 1),
-         (4, 0, 3), (3, 7, 5), (0, 5, 3)]
+    dijkstra(graph, 2, 0)
 
 
-G = nx.Graph()
+    edges = [(1, 2, 1), (2, 5, 2), (3, 5, 3),
+            (5, 1, 1), (4, 1, 5), (4, 6, 1),
+            (4, 0, 3), (3, 7, 5), (0, 5, 3)]
 
-G.add_weighted_edges_from(edges)
-labels = nx.get_edge_attributes(G, 'weight')
-pos = nx.spring_layout(G)
-nx.draw_networkx_nodes(G, pos, node_size=500)
-nx.draw_networkx_labels(G, pos)
-nx.draw_networkx_edges(G, pos)
-plt.show()
+
+    G = nx.Graph()
+
+    G.add_weighted_edges_from(edges)
+    labels = nx.get_edge_attributes(G, 'weight')
+    pos = nx.spring_layout(G)
+    nx.draw_networkx_nodes(G, pos, node_size=500, node_color='gray')
+    nx.draw_networkx_labels(G, pos)
+    nx.draw_networkx_edges(G, pos, edge_color='green')
+
+    plt.show()
